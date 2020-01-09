@@ -73,4 +73,16 @@ struct ContentView3: View {
     }
 }
 
-PlaygroundPage.current.setLiveView(ContentView3())
+// text fields
+struct ContentView4: View {
+    @State private var name: String = "shane"
+    
+    var body: some View {
+        VStack {
+            TextField("Enter your name", text: $name)
+            Text("Hello, \(name)!")
+        }
+    }
+}
+
+PlaygroundPage.current.setLiveView(ContentView4())
