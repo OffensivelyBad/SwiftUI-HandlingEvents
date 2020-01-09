@@ -76,11 +76,25 @@ struct ContentView3: View {
 // text fields
 struct ContentView4: View {
     @State private var name: String = "shane"
+    @State private var email: String = ""
+    @State private var password: String = ""
     
     var body: some View {
         VStack {
             TextField("Enter your name", text: $name)
             Text("Hello, \(name)!")
+            
+            TextField("Enter your name with border", text: $name)
+                .disableAutocorrection(true)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Text("Hello, \(name)!")
+            
+            TextField("email@email.com", text: $email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            SecureField("Password", text: $password)
+            Text("you entered: \(password)")
         }
     }
 }
