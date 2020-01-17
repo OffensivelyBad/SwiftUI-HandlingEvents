@@ -234,4 +234,37 @@ struct ContentView12: View {
     }
 }
 
-PlaygroundPage.current.setLiveView(ContentView12())
+// tap gestures
+struct ContentView13: View {
+    var body: some View {
+        VStack {
+            Text("tap it")
+                .onTapGesture {
+                    print("tapped!")
+            }
+            Spacer().frame(height: 100)
+            Image(systemName: "cloud") // double tap
+                .onTapGesture(count: 2) {
+                    print("double tapped")
+            }
+        }
+    }
+}
+
+// content shape tapper
+struct ContentView14: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "cloud")
+                .resizable().frame(width: 50, height: 50)
+            Spacer().frame(height: 50)
+            Text("blargh blargh")
+        }
+    .contentShape(Rectangle())
+        .onTapGesture {
+            print("show details")
+        }
+    }
+}
+
+PlaygroundPage.current.setLiveView(ContentView13())
