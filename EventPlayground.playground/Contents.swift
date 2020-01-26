@@ -267,4 +267,74 @@ struct ContentView14: View {
     }
 }
 
-PlaygroundPage.current.setLiveView(ContentView13())
+// Tappers
+struct ContentView15: View {
+    @State private var scale: CGFloat = 1.0
+    
+    var body: some View {
+        VStack {
+            // Tap to scale
+            Image(systemName: "cloud.fill")
+                .scaleEffect(scale)
+                .gesture(
+                    TapGesture()
+                        .onEnded { _ in
+                            self.scale += 0.1
+                    }
+                )
+            
+            // Tap and hold
+            Image(systemName: "message")
+                .gesture(
+                    LongPressGesture(minimumDuration: 2)
+                        .onEnded { _ in
+                            print("secret message for you: blubs")
+                    }
+                )
+            
+            // Drag gesture
+            Image(systemName: "hare.fill")
+            .gesture(
+                DragGesture(minimumDistance: 50)
+                    .onEnded { transform in
+                        print("Dragged \(transform)")
+                }
+            )
+        }
+    }
+}
+
+// lifecycle
+struct ContentView16: View {
+    var body: some View {
+        NavigationView {
+            VStack {
+                NavigationLink(destination: DetailView()) {
+                    Text("Hola, el mundo")
+                }
+            }
+        }
+        .onAppear {
+            print("contentview appeared")
+        }
+        .onDisappear {
+            print("contentview disappeared")
+        }
+    }
+}
+
+struct DetailView: View {
+    var body: some View {
+        VStack {
+            Text("segunda vista")
+        }
+        .onAppear {
+            print("detailview appeared")
+        }
+        .onDisappear {
+            print("detailview disappeared")
+        }
+    }
+}
+
+PlaygroundPage.current.setLiveView(ContentView16())
